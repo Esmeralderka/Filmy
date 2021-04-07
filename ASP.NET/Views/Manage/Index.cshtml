@@ -1,0 +1,68 @@
+﻿@model Filmy.Models.IndexViewModel
+@{
+    ViewBag.Title = "Zarządzaj swoim kontem";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+@*<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dd>
+
+            @if (Model.HasPassword)
+            {
+                <button type="button" class="btn btn-primary">@Html.ActionLink("Zmień hasło", "ChangePassword", new { }, new { @style = "color:#000000" }) </button>
+
+            }
+            else
+            {
+                @Html.ActionLink("Utwórz", "SetPassword")
+            }
+
+        </dd>
+
+        
+
+
+
+
+    </dl>
+</div>*@
+<div>
+    <hr />
+    <dl class="btn-group-vertical">
+        @{if (User.IsInRole("admin"))
+            {
+                <dd>
+                    <button type="button" class="btn btn-group">@Html.ActionLink("Wszystkie wypożyczone filmy", "Moje", new { }, new { @style = "color:#000000" }) </button>
+                </dd>
+            }
+            else
+            {
+                <dd>
+                    <button type="button" class="btn btn-group">@Html.ActionLink("Moje filmy", "Moje", new { }, new { @style = "color:#000000" }) </button>
+                </dd>
+            }
+        }
+
+        @if (Model.HasPassword)
+        {
+            <button type="button" class="btn btn-primary">@Html.ActionLink("Zmień hasło", "ChangePassword", new { }, new { @style = "color:#000000" }) </button>
+
+        }
+        else
+        {
+            @Html.ActionLink("Utwórz", "SetPassword")
+        }
+
+
+    </dl> 
+    <div style="text-align: right">
+        <img src="~/Zdjecia/ludzie.jpg" width="600" />
+        </div>
+    </div>

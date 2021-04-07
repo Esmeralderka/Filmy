@@ -1,0 +1,40 @@
+﻿@model Filmy.Models.WypozyczeniaModels
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Czy na pewno chcesz anulować przypisanie tego filmu do użytkownika?</h2>
+
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Uzytkownicy.Nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Uzytkownicy.Nazwa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Filmy.Tytul)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Film_Tytul)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Usun" class="btn btn-danger" , style="color:#000000;" />
+            <button type="button" class="btn btn-success"> @Html.ActionLink("Powrot", "Moje_filmy", new { }, new { @style = "color:#000000;" })</button>
+        </div>
+    }
+</div>

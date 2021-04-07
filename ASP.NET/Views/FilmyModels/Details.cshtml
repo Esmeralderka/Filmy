@@ -1,0 +1,62 @@
+﻿@model Filmy.Models.FilmyModels
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>    @Html.DisplayFor(modelItem => modelItem.Tytul)</h2>
+
+<div>
+
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Plakat)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Dlugosc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+        </tr>
+        <tr>
+
+            <td>
+                <img src="@Html.DisplayFor(model => model.Plakat)" width="200px;" />
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(model => model.Dlugosc)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(model => model.Opis)
+            </td>
+
+        </tr>
+
+
+    </table>
+
+
+
+</div>
+<p>
+
+    <button type="button" class="btn btn-success"> @Html.ActionLink("Powrot", "Index", new { }, new { @style = "color:#000000;" })</button>
+
+
+    @{if (User.IsInRole("user"))
+        {
+            <td>
+                <button type="button" class="btn btn-info">@Html.ActionLink("Wypożycz", "Rental", new { id = Model.ID }, new { @style = "color:#000000" })</button>
+            </td>
+        }
+    }
+</p>

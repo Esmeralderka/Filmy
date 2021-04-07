@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Filmy.Models.WypozyczeniaModels>
+@{
+    ViewBag.Title = "Mfilmy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{if (User.IsInRole("admin"))
+    {
+        <h2>Wszystkie wypożyczone filmy</h2>
+    }
+    else
+    {
+        <h2>Moje filmy</h2>
+    }
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+
+
+    <table class="table">
+        <tr>
+            @{if (User.IsInRole("admin"))
+                {
+                    <th>
+                        @Html.DisplayNameFor(model => model.Uzytkownicy.Nazwa)
+
+                    </th>
+                } }
+            <th>
+                @Html.DisplayNameFor(model => model.Filmy.Tytul)
+
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            @* <th>
+                    @Html.DisplayNameFor(model => model.Gatunek.Nazwa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Studio.Nazwa)
+                </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @{if (User.IsInRole("admin"))
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Uzytkownicy.Nazwa)
+
+                        </td>
+                    }
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Film_Tytul)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Data)
+                </td>
+                @*  <td>
+                        @Html.DisplayFor(modelItem => item.Gatunek.Nazwa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Studio.Nazwa)
+                    </td>*@
+
+
+
+                @{if (User.IsInRole("admin"))
+                    {
+                        <td>
+
+
+                            <button type="button" class="btn btn-danger">@Html.ActionLink("Anluluj wypożyczenie", "Delete", new { id = item.ID }, new { @style = "color:#000000" })</button>
+                        </td>
+                    }
+                }
+
+            </tr>
+        }
+
+    </table>
+</body>
+</html>
+<div>
+    <button type="button" class="btn btn-success"> @Html.ActionLink("Powrot", "Powrot", new { }, new { @style = "color:#000000;" })</button>
+</div>

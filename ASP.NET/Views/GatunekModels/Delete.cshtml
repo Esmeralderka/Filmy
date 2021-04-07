@@ -1,0 +1,33 @@
+﻿@model Filmy.Models.GatunekModels
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Czy chcesz usunąć ten gatunek?</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nazwa)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="col-md-offset-2 col-md-10">
+    <input type="submit" value="Usun" class="btn btn-danger" , style="color:#000000;" />
+    <button type="button" class="btn btn-success"> @Html.ActionLink("Powrot", "Index", new { }, new { @style = "color:#000000;" })</button>
+</div>
+    }
+</div>

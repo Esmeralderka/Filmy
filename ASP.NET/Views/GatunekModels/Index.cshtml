@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Filmy.Models.GatunekModels>
+
+@*model Filmy.Models.SerwisViewModels>*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*{ var headerMetadata = Model.Gatunek.FirstOrDefault();}*@
+
+<meta name="viewport" content="width=device-width" />
+<title>Index</title>
+
+<h2 style="color:#FFFFFF">Wyszukaj film z konkretnego gatunku!</h2>
+@{if (User.IsInRole("admin"))
+    {
+        <p style="font-size:20px">
+            <button type="button" class="btn btn-success"> @Html.ActionLink("Utwórz nowy", "Create", new { }, new { @style = "color:#000000;" })</button>
+
+        </p>
+    }
+}
+
+
+<table class="table" width="90">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nazwa)
+        </th>
+       
+        <th></th>
+    </tr>
+
+
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nazwa)
+    </td>
+    <td style="text-align: right">
+        <button type="button" class="btn btn-primary">@Html.ActionLink("Zobacz filmy ➡", "Filmy", new { id = item.ID }, new { @style = "color:#000000" }) </button>
+
+
+
+        @{if (User.IsInRole("admin"))
+            {
+          
+                <button type="button" class="btn btn-info">@Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, new { @style = "color:#000000" })</button>
+
+                <button type="button" class="btn btn-danger">@Html.ActionLink("Usuń", "Delete", new { id = item.ID }, new { @style = "color:#000000" })</button>
+          
+        }
+        }
+        </td>
+    </tr>
+    }
+
+</table>
+
+
+
+
+
+

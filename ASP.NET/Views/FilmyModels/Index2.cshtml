@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Filmy.Models.FilmyModels>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h2 style="color:#FFFFFF">Nasza baza filmów</h2>
+
+    @{if (User.IsInRole("admin"))
+        {
+            <p style="font-size:20px">
+                <button type="button" class="btn btn-success"> @Html.ActionLink("Utwórz nowy", "Create", new { }, new { @style = "color:#000000;" })</button>
+
+            </p>
+        }
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Plakat)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tytul)
+
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Dlugosc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gatunek.Nazwa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Studio.Nazwa)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            <img src="@Html.DisplayFor(modelItem => item.Plakat)" width="200px;" />
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tytul)
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dlugosc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gatunek.Nazwa)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Studio.Nazwa)
+        </td>
+
+
+
+
+        @{if (User.IsInRole("admin"))
+            {
+                <td>
+                    <button type="button" class="btn btn-info">@Html.ActionLink("Edytuj", "Edit", new { id = item.ID }, new { @style = "color:#000000" })</button>
+
+                    <button type="button" class="btn btn-danger">@Html.ActionLink("Usuń", "Delete", new { id = item.ID }, new { @style = "color:#000000" })</button>
+                </td>
+            }
+        }
+
+        @{if (User.IsInRole("user"))
+            {
+                <td>
+                    <button type="button" class="btn btn-info">@Html.ActionLink("Wypożycz", "Rental", new { id = item.ID }, new { @style = "color:#000000" })</button>
+                </td>
+            }
+        }
+        <td>
+            <button type="button" class="btn btn-primary">@Html.ActionLink("Czytaj opis ➡", "Details", new { id = item.ID }, new { @style = "color:#000000" }) </button>
+
+        </td>
+    </tr>
+        }
+
+    </table>
+</body>
+</html>

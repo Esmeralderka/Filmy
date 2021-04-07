@@ -1,0 +1,62 @@
+﻿@model Filmy.Models.FilmyModels
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Czy na pewno chcesz usunąć ten film?</h2>
+<h2>  @Html.DisplayFor(model => model.Tytul)</h2>
+
+<div>
+  
+  
+    <hr />
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Plakat)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Dlugosc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Opis)
+            </th>
+        </tr>
+        <tr>
+
+            <td>
+                <img src="@Html.DisplayFor(model => model.Plakat)" width="200px;" />
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(model => model.Dlugosc)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(model => model.Opis)
+            </td>
+
+        </tr>
+
+
+    </table>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="col-md-offset-2 col-md-10">
+    <input type="submit" value="Usun" class="btn btn-danger"  , style = "color:#000000;" />
+    <button type="button" class="btn btn-success"> @Html.ActionLink("Powrot", "Index", new { }, new { @style = "color:#000000;" })</button>
+
+
+</div>
+    }
+</div>
